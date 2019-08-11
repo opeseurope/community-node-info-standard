@@ -1,0 +1,239 @@
+{
+  "title": "CommunityNode",
+  "description": "Information about a community node on the OPES Ecosystem",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "location": {
+      "type": "object",
+      "required": [
+        "city",
+        "country"
+      ],
+      "properties": {
+        "region": {
+          "description": "Location in human readable format [City, State]",
+          "type": "string"
+        },
+        "country": {
+          "description": "ISO 3166-1 alpha 2 country code [XX]",
+          "type": "string",
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]+$"
+        },
+        "latitude": {
+          "description": "Latitude in decimal degrees",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "Longitude in decimal degrees",
+          "type": "number"
+        }
+      }
+    },
+    "required_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "optional_url": {
+      "type": "string",
+      "if": {
+        "pattern": ".+"
+      },
+      "then": {
+        "format": "uri",
+        "pattern": "^https?://"
+      }
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^[\\w\\d_\\-\\.]*$"
+    }
+  },
+  "type": "object",
+  "required": [
+    "community_node_account_name",
+    "org",
+    "nodes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "community_node_account_name": {
+      "$id": "/properties/community_node_account_name",
+      "description": "Communit Node Account name",
+      "type": "string",
+      "maxLength": 12,
+      "minLength": 1,
+      "pattern": "^[\\.12345a-z]+$"
+    },
+    "org": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/location",
+          "description": "Organization location"
+        },
+        "display_name": {
+          "$id": "/properties/org/properties/dispay_name",
+          "description": "Community Node/organization name",
+          "type": "string"
+        },
+        "summary": {
+          "$id": "/properties/org/properties/summary",
+          "description": "Short summary describing your activity",
+          "type": "string"
+        },
+        "website": {
+          "$ref": "#/definitions/required_url",
+          "description": "Organization website"
+        },
+        "pledge_to_opes_ecosystem": {
+          "$ref": "#/definitions/optional_url",
+          "description": "Link to Code of Conduct"
+        },
+        "email": {
+          "$id": "/properties/org/properties/email",
+          "description": "Organization email",
+          "type": "string",
+          "format": "email"
+        },
+        "branding": {
+          "type": "object",
+          "properties":{
+            "sphere_256": {
+              "$ref": "#/definitions/optional_url",
+              "description": "Link to Organization sphere [PNG format, 256x256]"
+            },
+            "sphere_1024": {
+              "$ref": "#/definitions/optional_url",
+              "description": "Link to Organization sphere [PNG format, 1024x1024]"
+            },
+            "sphere_svg": {
+              "$ref": "#/definitions/optional_url",
+              "description": "Link to Organization logo [SVG format]"
+            }
+          }
+        },
+        "social": {
+          "type": "object",
+          "properties": {
+            "facebook": {
+              "$ref": "#/definitions/username",
+              "description": "group/page address only, not the entire url"
+            },
+            "linkedin": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "instagram": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "snapchat": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "github": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "keybase": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "reddit": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "steemit": {
+              "$ref": "#/definitions/username",
+              "description": "username only, WITHOUT @"
+            },
+            "telegram": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "twitter": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "wechat": {
+              "$ref": "#/definitions/username",
+              "description": "username only"
+            },
+            "youtube": {
+              "$ref": "#/definitions/username",
+              "description": "channel address only"
+            }
+          }
+        }
+      },
+      "required": [
+        "location",
+        "candidate_name",
+        "website"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/definitions/location",
+            "description": "Node location"
+          },
+          "node_type": {
+            "description": "Type of service",
+            "oneOf": [
+              {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": ["infra", "full", "query", "seed"]
+                }
+              },
+              {
+                "type": "string",
+                "enum": ["infra", "full", "query", "seed"]
+              }
+            ]
+          },
+          "p2p_endpoint": {
+            "description": "OPES Infrastructure Node P2P endpoint (host:port)",
+            "type": "string"
+          },
+          "bnet_endpoint": {
+            "description": "OPES Infrastructure Node BNET endpoint (host:port)",
+            "type": "string"
+          },
+          "api_endpoint": {
+            "description": "OPES Infrastructure Node HTTP endpoint (http://host:port)",
+            "type": "string",
+            "if": {
+              "pattern": ".+"
+            },
+            "then": {
+              "format": "uri",
+              "pattern": "^http://"
+            }
+          },
+          "ssl_endpoint": {
+            "description": "OPES Infrastructure Node HTTPS endpoint (https://host:port)",
+            "type": "string",
+            "if": {
+              "pattern": ".+"
+            },
+            "then": {
+              "format": "uri",
+              "pattern": "^https://"
+            }
+          }
+        }
+      }
+    }
+  }
+}

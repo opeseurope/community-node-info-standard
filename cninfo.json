@@ -1,0 +1,62 @@
+{
+  "community_node_account_name": "",
+  "org": {
+    "display_name": "",
+    "website": "",
+    "pledge_to_opes_ecosystem":"",
+    "email":"",
+    "branding":{
+      "sphere_256":"",
+      "sphere_1024":"",
+      "sphere_svg":""
+    },
+    "location": {
+      "name": "",
+      "country": "",
+      "latitude": 0,
+      "longitude": 0
+    },
+    "social": {
+      "linkedin": "",
+      "instagram": "",
+      "snapchat": "",
+      "steemit": "",
+      "twitter": "",
+      "youtube": "",
+      "facebook": "",
+      "github":"",
+      "reddit": "",
+      "keybase": "",
+      "telegram": "",
+      "wechat":""
+    }
+  },
+  "nodes": [
+    {
+      "location": {
+        "name": "",
+        "country": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "node_type": "infra",
+      "p2p_endpoint": "",
+      "bnet_endpoint": "",
+      "api_endpoint": "",
+      "ssl_endpoint": ""
+    },
+    {
+      "location": {
+        "name": "",
+        "country": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      "node_type":"seed",
+      "p2p_endpoint": "",
+      "bnet_endpoint": "",
+      "api_endpoint": "",
+      "ssl_endpoint": ""
+    }
+  ]
+}
