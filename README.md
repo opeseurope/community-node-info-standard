@@ -9,9 +9,9 @@ http://json-schema.org/specification.html
 
 One can specify under nodes/node_type the location of the infra structure node.
 Data aggregates are adviced to use the sourced data from opes.one. For more
-information on this, look at http://github.com/opespe
+information on this, look at http://github.com/opespe.
 
-- community_nodes_account_name: Name of community node account
+- community_node_account_name: Name of community node account
 - org: [Object]
   - display_name: Community node/organization name
   - summary: Short description of the activity
@@ -58,16 +58,19 @@ information on this, look at http://github.com/opespe
     - ssl_endpoint: Node HTTPS endpoint `https://host:port`
 
 ### How to use it if you are a Community Node
-Create a file named, preferably named `cn.json`. For instance
-`http://yourwebsite.com/cn.json`, or if you want to seperate it from your
-website, fe hosted on github your could
-`https://github.com/youraccount/cnrepo/cn.json`. When you register your
-community node using the `system.creatcn` action, or update it using the
-`system.updatecninfo`, the `resourcedesc` field should be filled with
-`http://yourwebsite.com/cn.json`. **Remember to store the full url**.
+Create a file named, preferably named `cn.json`, and make it available online.
+For example at `http://yourwebsite.com/cn.json`, or if you want to seperate it from your
+website, your could host in on your github at for example
+`https://github.com/youraccount/cnrepo/cn.json`. 
 
-Many services will use the information stored in your community node info file. Making it 
+When you register your
+community node using the `opes.system.creatcn` action, or update the information using the
+`system.updatecninfo`, make sure the `resourcedesc` field should be filled with
+the final location of your created `cn.json`. **Remember to store the full url, preferably secured with ssl**.
+
+Many services will use the information stored in your community node info file. Making it an important step
+in being known as a community node.
 
 ### Useful Links
-One can check for data validity using: https://www.jsonschemavalidator.net/
+One can check for data validity using: https://www.jsonschemavalidator.net/.
 To find the latitude and longitude for your location, on can use https://www.latlong.net/.
