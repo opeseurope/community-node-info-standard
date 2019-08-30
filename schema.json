@@ -53,12 +53,14 @@
   },
   "type": "object",
   "required": [
+    "version",
     "community_node_account_name",
     "org",
     "nodes"
   ],
   "additionalProperties": false,
   "properties": {
+    "version": "string",
     "community_node_account_name": {
       "$id": "/properties/community_node_account_name",
       "description": "Communit Node Account name",
